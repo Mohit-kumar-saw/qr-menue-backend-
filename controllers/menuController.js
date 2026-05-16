@@ -5,6 +5,7 @@ exports.getMenuItems = async (req, res) => {
         const menuItems = await Menu.find().populate('category');
         res.status(200).json(menuItems);
     } catch (error) {
+        console.error("GET /menu error:", error);
         res.status(500).json({ message: error.message });
     }
 };
@@ -25,6 +26,7 @@ exports.createMenuItem = async (req, res) => {
         await menuItem.save();
         res.status(201).json(menuItem);
     } catch (error) {
+        console.error("POST /menu error:", error);
         res.status(400).json({ message: error.message });
     }
 };

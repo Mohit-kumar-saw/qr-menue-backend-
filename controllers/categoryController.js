@@ -5,6 +5,7 @@ exports.getCategories = async (req, res) => {
         const categories = await Category.find().sort('order');
         res.status(200).json(categories);
     } catch (error) {
+        console.error("GET /categories error:", error);
         res.status(500).json({ message: error.message });
     }
 };
@@ -15,6 +16,7 @@ exports.createCategory = async (req, res) => {
         await category.save();
         res.status(201).json(category);
     } catch (error) {
+        console.error("POST /categories error:", error);
         res.status(400).json({ message: error.message });
     }
 };
